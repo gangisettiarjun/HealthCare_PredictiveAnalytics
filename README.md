@@ -10,7 +10,7 @@ Academic Project developed by a 4 member team
 
 Technology Stack
 -----------------
-Used WEKA libraries for buiding predictive models
-Spring MVC for handling requests and predicting outcome
-Built Front End using Bootstrap, HTML, JavaScript and Jquery
-Used Tableau Server for faciliating dcotors with interactive Visualization of Dashboard
+1. Used WEKA libraries for buiding predictive models
+2. Spring MVC for handling requests and predicting outcome
+3. Built Front End using Bootstrap, HTML, JavaScript and Jquery
+4. Used Tableau Server for faciliating dcotors with interactive Visualization of Dashboard
