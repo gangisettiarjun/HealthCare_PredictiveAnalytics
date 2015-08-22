@@ -1,4 +1,5 @@
-Title: Predicting Cardiac and Diabetic Problems using EHR research data
+Project Title: Predicting Cardiac and Diabetic Problems using EHR research data
+--------------------------------------------------------------------------------
 
 Academic Project developed by a 4 member team
 
