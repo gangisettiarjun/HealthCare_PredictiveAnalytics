@@ -175,21 +175,21 @@ public class DecisionTreeController {
 		HeartClassifier hcf = new HeartClassifier();
 		String heartResult = null;
 		StringBuilder sbText = new StringBuilder("@relation HeartData" + "\n"+ "\n"+
-												"@attribute Age numeric" + "\n" +
-												"@attribute Sex {0, 1}" + "\n"+
-												"@attribute ChestPainType {1, 2, 3, 4}" + "\n"+
-												"@attribute RestingBloodPressure numeric" + "\n"+
-												"@attribute SerumCholesterol numeric" + "\n"+
-												"@attribute FastingBloodSugar {0, 1}" + "\n"+
-												"@attribute RestingElectroCardiographResults {0, 1, 2}" + "\n"+
-												"@attribute MaximumHeartRate numeric" + "\n"+
-												"@attribute ExerciseInducedAngina {0, 1}" + "\n"+
-												"@attribute OldPeak numeric" + "\n"+
-												"@attribute SlopeOfPeak {1, 2, 3}" + "\n"+
-												"@attribute MajorVesselsColoredByFlouroscopy {0, 1, 2, 3}" + "\n"+
-												"@attribute Thal {3, 6, 7}" + "\n"+
-												"@attribute HeartProblem {1, 2}" + "\n"+ "\n"+
-												"@data" + "\n");
+							"@attribute Age numeric" + "\n" +
+							"@attribute Sex {0, 1}" + "\n"+
+							"@attribute ChestPainType {1, 2, 3, 4}" + "\n"+
+							"@attribute RestingBloodPressure numeric" + "\n"+
+							"@attribute SerumCholesterol numeric" + "\n"+
+							"@attribute FastingBloodSugar {0, 1}" + "\n"+
+							"@attribute RestingElectroCardiographResults {0, 1, 2}" + "\n"+
+							"@attribute MaximumHeartRate numeric" + "\n"+
+							"@attribute ExerciseInducedAngina {0, 1}" + "\n"+
+							"@attribute OldPeak numeric" + "\n"+
+							"@attribute SlopeOfPeak {1, 2, 3}" + "\n"+
+							"@attribute MajorVesselsColoredByFlouroscopy {0, 1, 2, 3}" + "\n"+
+							"@attribute Thal {3, 6, 7}" + "\n"+
+							"@attribute HeartProblem {1, 2}" + "\n"+ "\n"+
+							"@data" + "\n");
 		if (hdBean.getSex()=="Male"){
 			hdBean.setSex("0");
 		}
@@ -246,42 +246,40 @@ public class DecisionTreeController {
 		DiabetesClassifier dcf = new DiabetesClassifier();
 		String diabetesResult = null;
 		StringBuilder sbText = new StringBuilder("@relation DiabetesData" + "\n"+ "\n"+
-												"@attribute NumberOfMedications numeric" + "\n" +
-												"@attribute PlasmaGlucoseConcentration numeric" + "\n" +
-												"@attribute DiastolicBloodPressure numeric" + "\n" +
-												"@attribute TricepsSkinFoldThickness numeric" + "\n" + 
-												"@attribute SerumInsulin numeric" + "\n" +
-												"@attribute BodyMassIndex numeric" + "\n" +
-												"@attribute DiabetesPedigreeFunction numeric" + "\n" +
-												"@attribute Age numeric" + "\n" + 
-												"@attribute DiabetesProblem {0, 1}" + "\n" + "\n" +
-												"@data" + "\n");
+							"@attribute NumberOfMedications numeric" + "\n" +
+							"@attribute PlasmaGlucoseConcentration numeric" + "\n" +
+							"@attribute DiastolicBloodPressure numeric" + "\n" +
+							"@attribute TricepsSkinFoldThickness numeric" + "\n" + 
+							"@attribute SerumInsulin numeric" + "\n" +
+							"@attribute BodyMassIndex numeric" + "\n" +
+							"@attribute DiabetesPedigreeFunction numeric" + "\n" +
+							"@attribute Age numeric" + "\n" + 
+							"@attribute DiabetesProblem {0, 1}" + "\n" + "\n" +
+							"@data" + "\n");
 		
 		sbText.append(ddBean.getNumberOfMedications() + "," + ddBean.getPlasmaGlucoseConcentration()+ "," + ddBean.getDiastolicBloodPressure() + ","
 					+ ddBean.getTricepsSkinFoldThickness() + "," + ddBean.getSerumInsulin()+ "," + ddBean.getBodyMassIndex()+ "," + 
 					ddBean.getDiabetesPedigreeFunction() + "," + ddBean.getAge() + "," + "?");
 		
 		try {
-			  	File file = new File("diabetesinput.arff");
+			File file = new File("diabetesinput.arff");
 		        if(!file.exists()){
 		            file.createNewFile();
 		        }
-			  	FileWriter fw = new FileWriter("diabetesinput.arff");
-			  	System.out.print("Entered Writer");
-			    BufferedWriter writer = new BufferedWriter(fw);
-			    writer.write(sbText.toString());
-			    writer.flush();
-			    writer.close();
-				diabetesResult = dcf.getDiabetesPrediction();
-				System.out.println(diabetesResult);
-				ddBean.setDiabetesProblem(diabetesResult);
-				ApplicationContext ctx = 
-			             new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-				MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-				mongoOperation.save(ddBean);
-				
-			    
-			} catch (IOException e) {
+			FileWriter fw = new FileWriter("diabetesinput.arff");
+			System.out.print("Entered Writer");
+			BufferedWriter writer = new BufferedWriter(fw);
+			writer.write(sbText.toString());
+			writer.flush();
+			writer.close();
+			diabetesResult = dcf.getDiabetesPrediction();
+			System.out.println(diabetesResult);
+			ddBean.setDiabetesProblem(diabetesResult);
+			ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
+			MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
+			mongoOperation.save(ddBean);
+			} 
+		catch (IOException e) {
 	            e.printStackTrace();
 	        }
 		
@@ -293,9 +291,9 @@ public class DecisionTreeController {
 	            e.printStackTrace();
 	        }
 
-		  diabetesTreeResult.addObject("DiabetesClassLabel", diabetesResult);
-		  diabetesTreeResult.addObject("DiabetesData", ddBean);
-		  return diabetesTreeResult;
+		diabetesTreeResult.addObject("DiabetesClassLabel", diabetesResult);
+		diabetesTreeResult.addObject("DiabetesData", ddBean);
+		return diabetesTreeResult;
 	}
 	
 }
